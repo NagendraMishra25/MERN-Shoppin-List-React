@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\client",
+    "\\client\\src",
+    "\\client\\src\\actions",
+    "\\client\\src\\components",
+    "\\client\\src\\reducers"
+  ],
+  "SelectedNode": "\\client\\src\\components\\ShoppingList.js",
+  "PreviewInSolutionExplorer": false
+}

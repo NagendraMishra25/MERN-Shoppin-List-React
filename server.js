@@ -1,28 +1,40 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const path = require('path');
+const config = require('config');
 
-const items = require('./routes/api/items');
 
 const app = express();
 
 //Bodyparser middleware
-app.use(bodyParser.json());
+//app.use(bodyParser.json()); Instead use express inbuild parser
+app.use(express.json());
 
 //DB config
-const db = require('./config/keys').mongoURI;
+// const db = require('./config/keys').mongoURI;
+const db = config.get('mongoURI');
 
 // Connect to mongoDB
 
 mongoose
-	.connect(db)
+    .connect(db, {
+        usedNewUrlParser: true,
+        useCreateIndex: true
+    })
 	.then(() => console.log('MongoDB connected...'))
-	.catch( err => console.log(err));
+    .catch(err => console.log(err));
+console.log("before connect to monogdb");
+/*mongoose.connect(db, () => { }, { useNewUrlParser: true })
+    .catch(err => {
+        console.log("Monog connect error occured: ", err);
+    });*/
 
 
 // Use routes
-app.use('/api/items', items);
+app.use('/api/items', require('./routes/api/items'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 // Serve static assests if in production
 if (process.env.NODE_ENV === 'production') {

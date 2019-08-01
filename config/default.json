@@ -1,0 +1,5 @@
+{
+    "mongoURI_local": "mongodb://localhost/test",
+    "mongoURI":"mongodb+srv://mishra:RWycsp0h1cTGu6vG@cluster0-vzcqg.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "sl_myJwtSecret"
+}
